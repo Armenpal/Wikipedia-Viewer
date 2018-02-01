@@ -1,0 +1,78 @@
+body{
+	font-family: nunito;
+	margin: 0;
+	background-color: rgb(118, 173, 246);
+}
+
+
+hr{border: 1px solid #263241;}
+
+ul li{
+	list-style: none;
+}
+
+ul li a{ 
+	padding-left: 5px;
+	color: black;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: bold;
+ }
+
+ul li a:hover{
+	color: gray;
+}
+
+.logo{ 
+	width: auto;
+	height: 150px;
+	padding-bottom: 50px; 
+}
+
+.nav-menu{
+	text-align: center;
+	font-size: 20px;
+	height: 150px;
+	width: 100%;
+	padding-bottom: 100px;
+	color: #263241;
+}
+
+.results{text-decoration: none;}
+
+.result-item{
+	margin: 0 auto;
+	width: 90%;
+	height: auto;
+	background-color: rgba(140,150,120, 0.7);
+	border-radius: 5px;
+	border: 1px solid black;
+	text-decoration: none;
+}
+
+.result-item:hover{
+	background-color: rgba(198, 173, 246,0.7);
+	border: 1px solid black;
+}
+
+.search-viewer{
+	position: relative;
+	margin: 0 auto;
+	border-radius: 5%;
+}
+
+.search-viewer button{
+	width: 100px;
+	height: auto;
+	font-size: 16px;
+	background-color: #263241;
+	color: white;
+	border-radius: 8%;
+	border: 1px solid #263241;
+}
+
+.search-viewer button:hover{
+	background-color: rgba(198, 173, 246,0.7);
+	color: #263241;
+	border: 1px solid #263241;
+}

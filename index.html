@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Wikipedia Viewer</title>
+	<link rel="stylesheet" href="index.css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<link rel="shortcut icon" href="images/wiki.png">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width = device-width, initial-scale = 1">
+</head>
+
+<body>
+
+<!--Creates the navigation menu-->
+<nav class="nav-menu">
+	<h1>Wikipedia Viewer</h1>
+	<img src="images/wiki-logo.png" class="logo">
+</nav>
+
+
+<!--displays the search results-->
+<center>
+	<div class="search-viewer">
+		<input type="text" name="search-input" id="search-input">
+		<button type="button" id="search-button">Search</button>
+	</div>
+</center>
+
+<hr>
+
+<div>
+	<ul id="results"></ul>
+</div>
+
+</body>
+
+<!--jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="js/scripts.js"></script>
+
+<script>
+
+	$("document").ready(function(){
+
+
+		$("#search-button").click(function(){
+
+			//Gets thes user input
+			var input = $("#search-input").val();
+
+			//Creates the search url
+			var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + input + "&format=json&callback=?";
+
+			$.ajax({
+				type:"GET",
+				url:url,
+				async: false,
+				dataType: "json",
+				success: function(data){
+					$("#results").html("");
+					for( var i = data[1].length-1 ; i >= 0 ; i--){
+							$("#results").prepend("<div class=result-item><li><a href=" + data[3][i] + ">" + data[1][i] + "</a><p>" + data[2][i] + "</p></div><br>");
+					}
+
+					$("#search-input").val("");	
+				},
+
+				error: function(errorMessage){
+					alert("Error retrieving data");
+				}
+
+			});
+
+		});
+
+
+		$("#search-input").keypress(function(event){
+
+				if(event.keyCode == 13){
+
+						//Gets thes user input
+			var input = $("#search-input").val();
+
+			//Creates the search url
+			var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + input + "&format=json&callback=?";
+
+			$.ajax({
+				type:"POST",
+				url:url,
+				async: false,
+				dataType: "json",
+				success: function(data){
+					$("#results").html("");
+					for( var i = data[1].length -1; i >= 0 ; i--){
+							$("#results").prepend("<div class=result-item><li><a href=" + data[3][i] + ">" + data[1][i] + "</a><p>" + data[2][i] + "</p></div><br>");
+					}
+
+					$("#search-input").val("");	
+				},
+
+				error: function(errorMessage){
+					alert("Error");
+				}
+
+			});
+					}
+			});
+
+
+	});
+</script>
+
+</html>
